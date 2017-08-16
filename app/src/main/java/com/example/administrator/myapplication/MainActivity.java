@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mHorizontalScrollView = (MHorizontalScrrollView) findViewById(R.id.mHorizontalScrollView);
+        mHorizontalScrollView.initData(new String[]{"必杀1","必杀2","必杀13","必杀4","必杀5","必杀6","必杀7"},null);
 //        dy2 = new LineView(this);
 //        line222 = (LineView) findViewById(R.id.line222);
 ////		dy2.updateView(200, 200);
