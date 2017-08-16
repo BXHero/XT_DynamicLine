@@ -99,7 +99,7 @@ public class LineView extends View {
         Log.d("LZP","=====+++++++++++++++startX++++++======="+startX);
         Log.d("LZP","=====+++++++++++++++stopX+++++======="+stopX);
         this.startX = startX;
-        this.stopX = stopX+startX;
+        this.stopX = stopX;
         invalidate();
 
     }

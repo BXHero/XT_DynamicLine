@@ -135,18 +135,26 @@ public class MHorizontalScrrollView extends HorizontalScrollView {
 			//每一个字符本身具有的长度
 			int textLength = (int) paint.measureText(args[0]);
 			//最后除2算出间距
+			allTextViewLength = (int) countLength;
 			return (int) ((textSize - textLength) / 2);
 		}else{
 			allTextViewLength = (int) countLength;
 			return itemMargins;
 		}
 	}
-
+//dynamicLine.updateView((position + positionOffset) * everyLength + dis + fixLeftDis, (lastPosition + 1) * everyLength - dis);
 	private void setCurrentSelectTextSize(int index){
 		for(int i = 0; i < textViews.size();i++){
 			if(i == index){
 				textViews.get(i).setTextColor(selectTextColor);
 				textViews.get(i).setTextSize(selectTextSize);
+				final int textViewLength = allTextViewLength/titlesTextView.length;
+
+				final int startX = index*textViewLength;
+				final int loastX = startX + textViewLength;
+
+
+				dy2.updateView(startX,loastX);
 			}else{
 				textViews.get(i).setTextColor(defaultTextColor);
 				textViews.get(i).setTextSize(defultTextSize);
@@ -160,7 +168,7 @@ public class MHorizontalScrrollView extends HorizontalScrollView {
 //		if (scrollViewListener != null) {
 //			scrollViewListener.onScrollChanged(this, l, t, oldl, oldt);
 //		}
-		dy2.updateView(oldl,l);
+//		dy2.updateView(oldl,l);
 	}
 
 	private OnClickListener onClickListener = new OnClickListener() {
