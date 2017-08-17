@@ -50,14 +50,40 @@ public class MHorizontalScrrollView extends HorizontalScrollView {
 	 * @param arg
 	 * @param viewPager
 	 */
+    private int lastPosition; //页面显示的最后位置  也是当前位置
+    ViewPager viewPager;
 	public void initData(String[] arg, ViewPager viewPager){
 		titlesTextView = arg;
 		initLine();//线条
 		initTextViews();//字符
 		init();//结合字符和线条 添加入布局
 
-		//默认选中的字符--黑粗
-		setCurrentSelectTextSize(0);
+
+
+		//让pager和TextViews数组关联起来
+		viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                //参数2是以[0,1)作为位移变量显示
+                //参数3是以像素为位置偏移量
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setCurrentSelectTextSize(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if(state == ViewPager.SCROLL_STATE_SETTLING){
+
+                }
+            }
+        });
+        this.viewPager = viewPager;
+        //默认选中的字符--黑粗
+        setCurrentSelectTextSize(0);
 	}
 
 	private void init() {
@@ -152,9 +178,8 @@ public class MHorizontalScrrollView extends HorizontalScrollView {
 
 				final int startX = index*textViewLength;
 				final int loastX = startX + textViewLength;
-
-
 				dy2.updateView(startX,loastX);
+                viewPager.setCurrentItem(index);
 			}else{
 				textViews.get(i).setTextColor(defaultTextColor);
 				textViews.get(i).setTextSize(defultTextSize);

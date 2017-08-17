@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mHorizontalScrollView = (MHorizontalScrrollView) findViewById(R.id.mHorizontalScrollView);
-        mHorizontalScrollView.initData(new String[]{"必杀1","必杀2","必杀13","必杀4","必杀5","必杀6","必杀7","必杀8"},null);
+
 
 
 
@@ -64,11 +64,8 @@ public class MainActivity extends AppCompatActivity {
         views.add(view7);
         views.add(view8);
 
-
         pager.setAdapter(new MyPagerAdapter(views));
-
-
-
+        mHorizontalScrollView.initData(new String[]{"必杀1","必杀2","必杀13","必杀4","必杀5","必杀6","必杀7","必杀8"},pager);
     }
 
      class MyPagerAdapter extends PagerAdapter {
